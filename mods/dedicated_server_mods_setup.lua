@@ -1,0 +1,9 @@
+-- There are two functions you can use here:
+-- 1. ServerModSetup("workshop_id")
+--    Downloads the mod from the Steam Workshop.
+-- 2. ServerModCollectionSetup("collection_id")
+--    Downloads all mods in a Steam Workshop collection.
+--
+-- Example:
+-- ServerModSetup("378160970") -- Global Positions
+-- ServerModSetup("375850593") -- Extra Equip Slots

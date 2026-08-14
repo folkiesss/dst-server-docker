@@ -1,0 +1,48 @@
+services:
+  # Master Overworld shard (amd64 binary via Rosetta on Mac / native on Linux VPS)
+  master:
+    image: dst-server:latest
+    build: .
+    container_name: dst-master
+    platform: linux/amd64
+    restart: unless-stopped
+    stop_grace_period: 30s
+    ports:
+      - "${MASTER_PORT:-10999}:10999/udp"
+    env_file:
+      - .env
+    environment:
+      SHARD: Master
+      SERVER_PORT: 10999
+    volumes:
+      - dst-game:/dst
+      - ./cluster:/data/DoNotStarveTogether/MyDediServer
+      - ./mods:/mods_config
+
+  # Caves underground shard (amd64 binary via Rosetta on Mac / native on Linux VPS)
+  caves:
+    image: dst-server:latest
+    build: .
+    container_name: dst-caves
+    platform: linux/amd64
+    restart: unless-stopped
+    stop_grace_period: 30s
+    depends_on:
+      master:
+        condition: service_started
+    ports:
+      - "${CAVES_PORT:-11000}:11000/udp"
+    env_file:
+      - .env
+    environment:
+      SHARD: Caves
+      SERVER_PORT: 11000
+      MASTER_HOST: master
+    volumes:
+      - dst-game:/dst
+      - ./cluster:/data/DoNotStarveTogether/MyDediServer
+      - ./mods:/mods_config
+
+volumes:
+  dst-game:
+    # name: dst-game  # Uncomment to share game files across multiple clusters/projects on this host
