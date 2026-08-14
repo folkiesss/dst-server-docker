@@ -132,7 +132,6 @@ if [ -f "${CLUSTER_INI}" ]; then
     update_ini_setting "${CLUSTER_INI}" "NETWORK" "cluster_name" "${DST_CLUSTER_NAME:-}"
     update_ini_setting "${CLUSTER_INI}" "NETWORK" "cluster_description" "${DST_CLUSTER_DESCRIPTION:-}"
     update_ini_setting "${CLUSTER_INI}" "NETWORK" "cluster_password" "${DST_CLUSTER_PASSWORD:-}"
-    update_ini_setting "${CLUSTER_INI}" "NETWORK" "cluster_intention" "${DST_CLUSTER_INTENTION:-}"
     update_ini_setting "${CLUSTER_INI}" "GAMEPLAY" "game_mode" "${DST_GAME_MODE:-}"
     update_ini_setting "${CLUSTER_INI}" "GAMEPLAY" "max_players" "${DST_MAX_PLAYERS:-}"
     update_ini_setting "${CLUSTER_INI}" "GAMEPLAY" "pvp" "${DST_PVP:-}"
